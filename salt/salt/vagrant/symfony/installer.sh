@@ -5,5 +5,5 @@ if [ $# != 1 ]; then
   exit 1
 fi
 
-wget https://get.symfony.com/cli/installer -O - | bash
-mv /home/vagrant/.symfony/bin/symfony "$1"
+wget https://get.symfony.com/cli/installer -q -O - | bash > /dev/null
+ln -s /home/vagrant/.symfony/bin/symfony "$1"

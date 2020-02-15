@@ -1,20 +1,28 @@
-common:
+system:
+  timezone: Europe/Amsterdam
+  locales:
+    - en_US.UTF-8
+    - nl_NL.UTF-8
+  default_locale:
+    - en_US.UTF-8
+
+home:
   user: vagrant
   group: vagrant
   directories:
-    binaries:
-      name: /home/vagrant/bin
-      mode: 700
-    installers:
-      name: /etc/vagrant/installer
-      mode: 755
+    - bin
+    - lib
+
+installers:
+  - composer
+  - symfony
 
 composer:
-  installer: composer.sh
   binary: composer
-  gitlab_domain: gitlab.services.kirra.nl
+  installer: salt://vagrant/composer/installer.sh
+  gitlab_domain: some_gitlab_domain
   access_token: test
 
 symfony:
-  installer: symfony.sh
   binary: symfony
+  installer: salt://vagrant/symfony/installer.sh

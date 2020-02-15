@@ -1,20 +1,7 @@
-{% set installer = pillar['common']['directories']['installers']['name'] + '/' + pillar['symfony']['installer'] %}
-{% set binary = pillar['common']['directories']['binaries']['name'] + '/' + pillar['symfony']['binary'] %}
-
-install_symfony:
-  file.managed:
-    - name: {{ installer }}
-    - source: salt://vagrant/symfony/installer.sh
-    - mode: 777
-    - check_cmd: dos2unix
-  cmd.run:
-    - name: {{ installer }} {{ binary }}
-    - unless: test -f {{ binary }}
-    - runas: {{ pillar['common']['user'] }}
+{% set binary = pillar['symfony']['binary'] %}
+{% set user = pillar['home']['user'] %}
 
 update_symfony:
-  cmd.wait:
+  cmd.run:
     - name: {{ binary }} self:update --yes
-    - runas: {{ pillar['common']['user'] }}
-    - watch:
-        - cmd: install_symfony
+    - runas: {{ user }}

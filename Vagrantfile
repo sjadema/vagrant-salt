@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
   config.vagrant.plugins = ["vagrant-vbguest"]
   if Vagrant::Util::Platform.windows? then
-    config.vagrant.plugins.push(["vagrant-winnfsd"])
+    config.vagrant.plugins.push("vagrant-winnfsd")
   end
 
   # Every Vagrant development environment requires a box. You can search for
@@ -47,10 +47,10 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "D:\\Projects\\PHP", "/data/projects",
-    type: "nfs",
-    mount_options: ["rw", "vers=3", "tcp"],
-    linux__nfs_options: ["rw", "no_subtree_check", "all_squash", "async"]
+#  config.vm.synced_folder "D:\\Projects\\PHP", "/data/projects",
+#    type: "nfs",
+#    mount_options: ["rw", "vers=3", "tcp"],
+#    linux__nfs_options: ["rw", "no_subtree_check", "all_squash", "async"]
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # Provider-specific configuration so you can fine-tune various
